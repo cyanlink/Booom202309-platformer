@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 822965085}
   - component: {fileID: 822965084}
   - component: {fileID: 822965083}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Tilemap 01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4608,7 +4608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1415217473}
   - component: {fileID: 1415217474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Level Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4744,7 +4744,7 @@ GameObject:
   - component: {fileID: 1607060683}
   - component: {fileID: 1607060682}
   - component: {fileID: 1607060681}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Tilemap 01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10921,7 +10921,7 @@ GameObject:
   - component: {fileID: 1666989610}
   - component: {fileID: 1666989609}
   - component: {fileID: 1666989608}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Tilemap 01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16886,7 +16886,7 @@ GameObject:
   - component: {fileID: 1877164979}
   - component: {fileID: 1877164978}
   - component: {fileID: 1877164977}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Tilemap 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23627,7 +23627,7 @@ MonoBehaviour:
   _wallCheckSize: {x: 0.5, y: 1}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!50 &2107377067
 Rigidbody2D:
   serializedVersion: 4

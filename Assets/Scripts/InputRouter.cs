@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TFR;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static TFR.InputAsset;
 
-public class InputManager : MonoBehaviour
+public class InputRouter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private InputAsset inputMaps;
+
+    private MovementActions movementMap;
+    private UIActions uiMap;
+
+    public MovementActions Movement => movementMap;
+    public UIActions UI => uiMap;
+
+    void Awake()
     {
-        
+        movementMap = inputMaps.Movement;
+        uiMap = inputMaps.UI;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
