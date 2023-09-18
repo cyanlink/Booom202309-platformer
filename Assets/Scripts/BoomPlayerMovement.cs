@@ -1,7 +1,9 @@
+using Cysharp.Threading.Tasks;
 using Dawnosaur;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TFR;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -28,6 +30,9 @@ public class BoomPlayerMovement : MonoBehaviour
     public bool isJumpFalling { get; private set; }
     public ExplodeState explodeState { get; private set; } = 0; //当前爆炸状态
     public int CurrentBombCount { get; private set; }//当前剩余炸弹数目
+
+    public ValueWrapper<bool> AllowNormalExplode { get; private set; } = new(true);
+    public ValueWrapper<bool> AllowTickerExplode { get; private set; } = new(true);
     #endregion
 
     #region Check Params
@@ -44,6 +49,7 @@ public class BoomPlayerMovement : MonoBehaviour
 
     #region Input Params
     private float moveInput;
+
     public float LastPressedJumpTime { get; private set; }
     public float LastPressedExplodeTime { get; private set; }
     #endregion
@@ -66,7 +72,7 @@ public class BoomPlayerMovement : MonoBehaviour
         moveInput = movement.Move.ReadValue<float>();
         var jumpStart = movement.Jump.WasPressedThisFrame();
         var jumpEnd = movement.Jump.WasReleasedThisFrame();
-        var explodePressed = movement.Explode.IsPressed();
+        var explodePressed = movement.Explode.WasPressedThisFrame();
 
         #region Timer Refresh
         LastOnGroundTime -= Time.deltaTime;
@@ -115,19 +121,42 @@ public class BoomPlayerMovement : MonoBehaviour
         {
             if (explodeState == ExplodeState.Default)
             {
-                if (explodePressed) {
-                    StartNormalExplode();
+                if (jumpStart)
+                {
+                    if (AllowNormalExplode)
+                    {
+                        Debug.Log("Start Normal Explode");
+                        StartNormalExplode();
+                        _ = ToggleCooldownDelayed(AllowNormalExplode, 4000);
+                    }
+                    else 
+                    { 
+                        Debug.Log("Normal Explode on cooldown"); 
+                    }
                 }
             }
         }
-        if (explodeState == ExplodeState.FirstExplode)
+        if (explodeState == ExplodeState.NormalExplode || explodeState == ExplodeState.Default)
         {
             if (explodePressed)
             {
-                StartTickerExplode();
+                if (AllowTickerExplode)
+                {
+                    Debug.Log("Start Ticker Explode");
+                    StartTickerExplode();
+                    _ = ToggleCooldownDelayed(AllowTickerExplode, 4000);
+                }
+                else
+                {
+                    Debug.Log("TickerBomb on cooldown");
+                }
             }
         }
         #endregion
+    }
+    private void FixedUpdate()
+    {
+        Run(1);
     }
     private void Jump()
     {
@@ -148,19 +177,14 @@ public class BoomPlayerMovement : MonoBehaviour
     }
     private void StartNormalExplode()
     {
-        explodeState = ExplodeState.FirstExplode;
+        explodeState = ExplodeState.NormalExplode;
         rb.AddForce(movementConfig.jumpForce * Vector2.up, ForceMode2D.Impulse);
     }
 
     private void StartTickerExplode()
     {
-        explodeState = ExplodeState.SecondExplode;
-        StartCoroutine(TickerBombCountdownCoroutine(ApplyTickerExplodeForce)) ;
-    }
-
-    private void FixedUpdate()
-    {
-        Run(1);
+        explodeState = ExplodeState.TickerExplode;
+        StartCoroutine(TickerBombCountdownCoroutine(ApplyTickerExplodeForce));
     }
 
     private void ApplyTickerExplodeForce()
@@ -168,19 +192,26 @@ public class BoomPlayerMovement : MonoBehaviour
         rb.AddForce(movementConfig.jumpForce * 1.5f * Vector2.up, ForceMode2D.Impulse);
     }
 
+    private async UniTaskVoid ToggleCooldownDelayed(ValueWrapper<bool> value, int duration)
+    {
+        value.Value = false;
+        await UniTask.Delay(duration);
+        value.Value = true;
+    }
 
     //FIXME TODO 已经实现，待验证，另一种实现：开一个coroutine不断循环waitforseconds，外面写一个coroutine用来计时并Stop它
 
     IEnumerator TickerBombCountdownCoroutine(Action OnTickerFinish)
     {
-        StartCoroutine(TickerBombLoopCoroutine());
+        var loop = TickerBombLoopCoroutine();
+        StartCoroutine(loop);
         yield return new WaitForSeconds(movementConfig.TickerBombExplodeDelay);
-        StopCoroutine(TickerBombLoopCoroutine());
+        StopCoroutine(loop);
         OnTickerFinish.Invoke();
     }
     IEnumerator TickerBombLoopCoroutine()
     {
-        while(true)
+        while (true)
         {
             yield return TickerBombBlinkCoroutine();
         }
@@ -196,7 +227,7 @@ public class BoomPlayerMovement : MonoBehaviour
     {
         Debug.Log("Bomb Blinked");
         //FIXME experiment only!!!
-        AnimHandler.startedJumping= true;
+        AnimHandler.startedJumping = true;
     }
 
     private void Run(float lerpAmount)
@@ -276,5 +307,5 @@ public class BoomPlayerMovement : MonoBehaviour
 
 public enum ExplodeState
 {
-    Default, FirstExplode, SecondExplode
+    Default, NormalExplode, TickerExplode
 }
