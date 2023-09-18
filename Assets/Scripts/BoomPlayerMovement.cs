@@ -1,3 +1,4 @@
+using Dawnosaur;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,7 @@ public class BoomPlayerMovement : MonoBehaviour
     #endregion
 
     private Rigidbody2D rb;
+    public PlayerAnimator AnimHandler { get; private set; }
     [Space(5)]
     [SerializeField] private LayerMask groundLayer;
 
@@ -35,7 +37,7 @@ public class BoomPlayerMovement : MonoBehaviour
     #endregion
 
     [Header("Configs")]
-    private GameplayConfig gameplayConfig;
+    [SerializeField]
     private MovementConfig movementConfig;
 
     #region Input Params
@@ -52,7 +54,8 @@ public class BoomPlayerMovement : MonoBehaviour
     {
         movement = inputRouter.Movement;
         rb = GetComponent<Rigidbody2D>();
-        CurrentBombCount = gameplayConfig.BombCountMax;
+        CurrentBombCount = movementConfig.BombCountMax;
+        AnimHandler = GetComponent<PlayerAnimator>();
     }
 
     // Update is called once per frame
@@ -68,13 +71,22 @@ public class BoomPlayerMovement : MonoBehaviour
         #endregion
 
         #region Movement
+        //ground check
+        if (Physics2D.OverlapBox(_groundCheckPoint.position, _groundCheckSize, 0, groundLayer)) //checks if set box overlaps with ground
+        {
+            if (LastOnGroundTime < -0.1f)
+            {
+                AnimHandler.justLanded = true;
+            }
 
+            LastOnGroundTime = movementConfig.coyoteTime; //if so sets the lastGrounded to coyoteTime
+        }
         #endregion
     }
 
     private void FixedUpdate()
     {
-        
+        Run(1);
     }
 
 
@@ -82,7 +94,7 @@ public class BoomPlayerMovement : MonoBehaviour
     IEnumerator TickerBombCountDownCoroutine()
     {
         var time = Time.time;
-        var maxTime = time + gameplayConfig.TickerBombExplodeDelay;
+        var maxTime = time + movementConfig.TickerBombExplodeDelay;
         while(true)
         {
             time = Time.time;
@@ -96,7 +108,7 @@ public class BoomPlayerMovement : MonoBehaviour
     IEnumerator TickerBombBlinkCoroutine()
     {
         doTickerBombBlink();
-        yield return new WaitForSeconds(gameplayConfig.TickerBombBlinkInterval);
+        yield return new WaitForSeconds(movementConfig.TickerBombBlinkInterval);
         yield break;
     }
 

@@ -7,7 +7,7 @@ using static TFR.InputAsset;
 
 public class InputRouter : MonoBehaviour
 {
-    [SerializeField] private InputAsset inputMaps;
+    private InputAsset inputMaps;
 
     private MovementActions movementMap;
     private UIActions uiMap;
@@ -17,8 +17,13 @@ public class InputRouter : MonoBehaviour
 
     void Awake()
     {
+        inputMaps = new TFR.InputAsset();
+
         movementMap = inputMaps.Movement;
         uiMap = inputMaps.UI;
+
+        movementMap.Enable();
+        uiMap.Disable();
     }
 
 }

@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 20838931}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
@@ -164,7 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 158848352}
   - component: {fileID: 158848353}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1058,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603449059}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Wall Front Check
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
@@ -1125,7 +1125,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 822965081}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7cd774f1cab18954ab27d36691ceb528, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4521,6 +4521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 909106431}
   - component: {fileID: 909106432}
+  - component: {fileID: 909106433}
   m_Layer: 0
   m_Name: Demo Manager
   m_TagString: Untagged
@@ -4567,6 +4568,18 @@ MonoBehaviour:
   spawnPoint: {fileID: 538560688}
   nameText: {fileID: 425258558}
   SceneData: {fileID: 11400000, guid: ef27be30fe2a5784494b3d189b302457, type: 2}
+--- !u!114 &909106433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909106429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2956c073040a50f44ad7e0c11a85752e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1157512154
 GameObject:
   m_ObjectHideFlags: 0
@@ -4576,7 +4589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1157512155}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Wall Back Check
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -4608,7 +4621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1415217473}
   - component: {fileID: 1415217474}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Level Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4656,7 +4669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1571034776}
   - component: {fileID: 1571034777}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10810,7 +10823,7 @@ GameObject:
   - component: {fileID: 1624312722}
   - component: {fileID: 1624312723}
   - component: {fileID: 1624312724}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23562,7 +23575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2075300069}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Checks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23598,9 +23611,10 @@ GameObject:
   - component: {fileID: 2107377069}
   - component: {fileID: 2107377068}
   - component: {fileID: 2107377067}
+  - component: {fileID: 2107377071}
   - component: {fileID: 2107377066}
   - component: {fileID: 2107377070}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -23614,7 +23628,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107377065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b25879a85aef4049811869e47d814b6, type: 3}
   m_Name: 
@@ -23734,6 +23748,25 @@ MonoBehaviour:
   jumpFX: {fileID: 3234584074981126610, guid: ef64e6572022fbb47969c1618d73ef20, type: 3}
   landFX: {fileID: 3234584074981126610, guid: 0618e2f871341254cafc1ffc33fc18df, type: 3}
   currentVelY: 0
+--- !u!114 &2107377071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107377065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9d3d04d982dca45aa63c0681912d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputRouter: {fileID: 909106433}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _groundCheckPoint: {fileID: 20838931}
+  _groundCheckSize: {x: 0.49, y: 0.03}
+  movementConfig: {fileID: 11400000, guid: 4db3967cde9ac1344b8d4fa0a4aae9a8, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

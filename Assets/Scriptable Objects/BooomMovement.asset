@@ -12,27 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f390c85affec014ebcf1c85a8dadc21, type: 3}
   m_Name: BooomMovement
   m_EditorClassIdentifier: 
-  gravityStrength: 0
-  gravityScale: 0
-  fallGravityMult: 0
-  maxFallSpeed: 0
-  fastFallGravityMult: 0
-  maxFastFallSpeed: 0
-  runMaxSpeed: 0
-  runAcceleration: 0
-  runAccelAmount: 0
-  runDecceleration: 0
-  runDeccelAmount: 0
-  accelInAir: 0
+  gravityStrength: -36
+  gravityScale: 3.6697247
+  fallGravityMult: 2
+  maxFallSpeed: 20
+  fastFallGravityMult: 2
+  maxFastFallSpeed: 20
+  runMaxSpeed: 20
+  runAcceleration: 2
+  runAccelAmount: 5
+  runDecceleration: 10
+  runDeccelAmount: 25
+  accelInAir: 1
   deccelInAir: 0
-  doConserveMomentum: 1
-  jumpHeight: 0
-  jumpTimeToApex: 0
-  jumpForce: 0
-  jumpCutGravityMult: 0
+  doConserveMomentum: 0
+  BombCountMax: 2
+  NormalExplosionForce: {x: 1, y: 1}
+  TickerExplosionForce: {x: 1, y: 1}
+  TickerBombBlinkInterval: 0.75
+  TickerBombExplodeDelay: 2
+  jumpHeight: 4.5
+  jumpTimeToApex: 0.5
+  jumpForce: 18
+  jumpCutGravityMult: 4
   jumpHangGravityMult: 0
   jumpHangTimeThreshold: 0
   jumpHangAccelerationMult: 0
   jumpHangMaxSpeedMult: 0
-  coyoteTime: 0
-  jumpInputBufferTime: 0
+  coyoteTime: 0.5
+  jumpInputBufferTime: 0.2

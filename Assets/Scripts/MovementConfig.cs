@@ -33,6 +33,15 @@ public class MovementConfig : ScriptableObject
 
     [Space(20)]
 
+    [Header("Explode")]
+    public int BombCountMax;
+    public Vector2 NormalExplosionForce;
+    public Vector2 TickerExplosionForce;
+    public float TickerBombBlinkInterval;
+    public float TickerBombExplodeDelay;
+
+    [Space(20)]
+
     [Header("Jump")]
     public float jumpHeight; //Height of the player's jump
     public float jumpTimeToApex; //Time between applying the jump force and reaching the desired jump height. These values also control the player's gravity and jump force.
