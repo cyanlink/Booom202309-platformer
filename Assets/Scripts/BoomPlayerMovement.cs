@@ -1,4 +1,5 @@
 using Dawnosaur;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -24,7 +25,8 @@ public class BoomPlayerMovement : MonoBehaviour
     #region State Params
     public bool IsFacingRight { get; private set; }//面朝左边还是右边
     public bool IsJumping { get; private set; }//是否正在跳跃
-    public bool IsInExplosionCooldown { get; private set; }//当前是否允许爆炸（爆炸冷却）
+    public bool isJumpFalling { get; private set; }
+    public ExplodeState explodeState { get; private set; } = 0; //当前爆炸状态
     public int CurrentBombCount { get; private set; }//当前剩余炸弹数目
     #endregion
 
@@ -68,6 +70,7 @@ public class BoomPlayerMovement : MonoBehaviour
 
         #region Timer Refresh
         LastOnGroundTime -= Time.deltaTime;
+        LastPressedJumpTime -= Time.deltaTime;
         #endregion
 
         #region Movement
@@ -77,11 +80,82 @@ public class BoomPlayerMovement : MonoBehaviour
             if (LastOnGroundTime < -0.1f)
             {
                 AnimHandler.justLanded = true;
+                explodeState = ExplodeState.Default;
             }
 
             LastOnGroundTime = movementConfig.coyoteTime; //if so sets the lastGrounded to coyoteTime
         }
         #endregion
+
+
+
+        #region JUMP CHECKS
+        if (jumpStart)
+        {
+            LastPressedJumpTime = movementConfig.jumpInputBufferTime;
+        }
+        if (IsJumping && rb.velocity.y < 0)
+        {
+            IsJumping = false;
+
+            isJumpFalling = true;
+        }
+        if (CanJump() && LastPressedJumpTime > 0)
+        {
+            IsJumping = true;
+            isJumpFalling = false;
+            Jump();
+
+            AnimHandler.startedJumping = true;
+        }
+        #endregion
+
+        #region Explode
+        if (IsJumping || isJumpFalling)
+        {
+            if (explodeState == ExplodeState.Default)
+            {
+                if (explodePressed) {
+                    StartNormalExplode();
+                }
+            }
+        }
+        if (explodeState == ExplodeState.FirstExplode)
+        {
+            if (explodePressed)
+            {
+                StartTickerExplode();
+            }
+        }
+        #endregion
+    }
+    private void Jump()
+    {
+        //Ensures we can't call Jump multiple times from one press
+        LastPressedJumpTime = 0;
+        LastOnGroundTime = 0;
+
+        #region Perform Jump
+        //We increase the force applied if we are falling
+        //This means we'll always feel like we jump the same amount 
+        //(setting the player's Y velocity to 0 beforehand will likely work the same, but I find this more elegant :D)
+        float force = movementConfig.jumpForce;
+        if (rb.velocity.y < 0)
+            force -= rb.velocity.y;
+
+        rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        #endregion
+    }
+    private void StartNormalExplode()
+    {
+        explodeState = ExplodeState.FirstExplode;
+        rb.AddForce(movementConfig.jumpForce * Vector2.up, ForceMode2D.Impulse);
+    }
+
+    private void StartTickerExplode()
+    {
+        explodeState = ExplodeState.SecondExplode;
+        StartCoroutine(TickerBombCountdownCoroutine(ApplyTickerExplodeForce)) ;
     }
 
     private void FixedUpdate()
@@ -89,19 +163,25 @@ public class BoomPlayerMovement : MonoBehaviour
         Run(1);
     }
 
-
-    //FIXME 另一种实现：开一个coroutine不断循环waitforseconds，外面写一个coroutine用来计时并Stop它
-    IEnumerator TickerBombCountDownCoroutine()
+    private void ApplyTickerExplodeForce()
     {
-        var time = Time.time;
-        var maxTime = time + movementConfig.TickerBombExplodeDelay;
+        rb.AddForce(movementConfig.jumpForce * 1.5f * Vector2.up, ForceMode2D.Impulse);
+    }
+
+
+    //FIXME TODO 已经实现，待验证，另一种实现：开一个coroutine不断循环waitforseconds，外面写一个coroutine用来计时并Stop它
+
+    IEnumerator TickerBombCountdownCoroutine(Action OnTickerFinish)
+    {
+        StartCoroutine(TickerBombLoopCoroutine());
+        yield return new WaitForSeconds(movementConfig.TickerBombExplodeDelay);
+        StopCoroutine(TickerBombLoopCoroutine());
+        OnTickerFinish.Invoke();
+    }
+    IEnumerator TickerBombLoopCoroutine()
+    {
         while(true)
         {
-            time = Time.time;
-            if(time >= maxTime)
-            {
-                yield break;
-            }
             yield return TickerBombBlinkCoroutine();
         }
     }
@@ -115,6 +195,8 @@ public class BoomPlayerMovement : MonoBehaviour
     private void doTickerBombBlink()
     {
         Debug.Log("Bomb Blinked");
+        //FIXME experiment only!!!
+        AnimHandler.startedJumping= true;
     }
 
     private void Run(float lerpAmount)
@@ -169,4 +251,30 @@ public class BoomPlayerMovement : MonoBehaviour
          * Time.fixedDeltaTime is by default in Unity 0.02 seconds equal to 50 FixedUpdate() calls per second
         */
     }
+
+    public void CheckDirectionToFace(bool isMovingRight)
+    {
+        if (isMovingRight != IsFacingRight)
+            Turn();
+    }
+
+    private void Turn()
+    {
+        //stores scale and flips the player along the x axis, 
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+
+        IsFacingRight = !IsFacingRight;
+    }
+
+    private bool CanJump()
+    {
+        return LastOnGroundTime > 0 && !IsJumping;
+    }
+}
+
+public enum ExplodeState
+{
+    Default, FirstExplode, SecondExplode
 }
