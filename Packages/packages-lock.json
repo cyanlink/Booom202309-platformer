@@ -7,6 +7,22 @@
       "dependencies": {},
       "hash": "64f7eec4e9e451b07ba0c56a152efaca88b6be17"
     },
+    "com.esotericsoftware.spine.timeline": {
+      "version": "file:C:/Users/tgvit/Downloads/com.esotericsoftware.spine.timeline-4.1",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.timeline": "1.2.10"
+      }
+    },
+    "com.esotericsoftware.spine.urp-shaders": {
+      "version": "file:C:/Users/tgvit/Downloads/com.esotericsoftware.spine.urp-shaders-4.1-2019.1",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.render-pipelines.universal": "7.1.5"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "9.0.3",
       "depth": 1,
