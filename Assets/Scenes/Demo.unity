@@ -24197,6 +24197,7 @@ GameObject:
   - component: {fileID: 2107377071}
   - component: {fileID: 2107377066}
   - component: {fileID: 2107377070}
+  - component: {fileID: 2107377072}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -24322,7 +24323,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107377065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d024cc73ad207e438a7a1d777842e0e, type: 3}
   m_Name: 
@@ -24339,7 +24340,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107377065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a9d3d04d982dca45aa63c0681912d07, type: 3}
   m_Name: 
@@ -24351,6 +24352,27 @@ MonoBehaviour:
   _groundCheckPoint: {fileID: 20838931}
   _groundCheckSize: {x: 0.49, y: 0.03}
   movementConfig: {fileID: 11400000, guid: 4db3967cde9ac1344b8d4fa0a4aae9a8, type: 2}
+--- !u!114 &2107377072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107377065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 890167ca1f8f05d43b99866633e5790f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 5
+  jumpSpeed: 10
+  isGround: 0
+  groundCheck: {fileID: 20838931}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
+  fallAddition: 3
+  jumpAddition: 1.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
