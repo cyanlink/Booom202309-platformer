@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 550955557}
   - component: {fileID: 550955558}
   - component: {fileID: 550955559}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_A_Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,7 +1097,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 136
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1115,7 +1115,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.0036816597}
+  m_Offset: {x: 0, y: -0.35059357}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1125,7 +1125,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1.3026152}
+  m_Size: {x: 1, y: 0.60879135}
   m_EdgeRadius: 0
 --- !u!50 &550955558
 Rigidbody2D:
@@ -1152,7 +1152,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &550955559
 MonoBehaviour:
@@ -4935,8 +4935,12 @@ GameObject:
   - component: {fileID: 849989541}
   - component: {fileID: 849989540}
   - component: {fileID: 849989539}
+  - component: {fileID: 849989546}
+  - component: {fileID: 849989545}
+  - component: {fileID: 849989544}
   - component: {fileID: 849989542}
-  m_Layer: 0
+  - component: {fileID: 849989543}
+  m_Layer: 7
   m_Name: Enemy_Try
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4959,7 +4963,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 136
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -4977,7 +4981,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.011932373, y: 0.008345604}
+  m_Offset: {x: -0.011932373, y: -0.3819306}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4987,7 +4991,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0023499, y: 1.2963715}
+  m_Size: {x: 1.0023499, y: 0.5158191}
   m_EdgeRadius: 0
 --- !u!50 &849989540
 Rigidbody2D:
@@ -5014,8 +5018,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!4 &849989541
 Transform:
   m_ObjectHideFlags: 0
@@ -5048,6 +5052,96 @@ MonoBehaviour:
   chaseSpeed: 0
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
+--- !u!114 &849989543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849989538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7478155bc836ec1448401d99f6d1fe86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottomOffset: {x: 0, y: -0.63}
+  leftOffset: {x: -0.5, y: 0}
+  rightOffset: {x: 0.51, y: 0}
+  checkRaduis: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  isGround: 0
+  touchLeftWall: 0
+  touchRightWall: 0
+--- !u!114 &849989544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849989538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d7f8b76d0cb864f9571584f64138ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  attackRange: 0
+  attackRate: 0
+--- !u!114 &849989545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849989538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23889b1c57d20c4f9c1027ff218d1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  invulnerableDuration: 0
+  invulnerable: 0
+--- !u!70 &849989546
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849989538}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.017345428, y: 0.026019096}
+  m_Size: {x: 1.0173569, y: 1.329569}
+  m_Direction: 0
 --- !u!1 &876365417
 GameObject:
   m_ObjectHideFlags: 0
@@ -5199,7 +5293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 967953820}
   - component: {fileID: 967953821}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5283,7 +5377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150529134}
   - component: {fileID: 1150529135}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5447,7 +5541,7 @@ GameObject:
   - component: {fileID: 1452361084}
   - component: {fileID: 1452361086}
   - component: {fileID: 1452361085}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5555,7 +5649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1491159444}
   - component: {fileID: 1491159445}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17874,7 +17968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1772988391}
   - component: {fileID: 1772988392}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: eye (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24644,7 +24738,7 @@ GameObject:
   - component: {fileID: 1988645136}
   - component: {fileID: 1988645138}
   - component: {fileID: 1988645137}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

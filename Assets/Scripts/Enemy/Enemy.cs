@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    PhysicsCheck physicsCheck;
+
     Rigidbody2D rb;
 
     protected Animator anim;
@@ -18,16 +20,34 @@ public class Enemy : MonoBehaviour
 
     public Vector3 faceDir;//面朝方向
 
+    [Header("计时器")]
+    public float waitTime;
+
+    public float waitTimeCounter;
+
+    public bool wait;
+
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        physicsCheck = GetComponent<PhysicsCheck>();
+
         currentSpeed = normalSpeed;
+        waitTimeCounter = waitTime;
     }
 
     public void Update()
     {
         faceDir = new Vector3(-transform.localScale.x, 0, 0);
+
+        if ((physicsCheck.touchLeftWall&&faceDir.x<0) || (physicsCheck.touchRightWall&&faceDir.x>0))
+        {
+            wait = true;
+            anim.SetBool("walk", false);
+        }
+
+        timeCounter();
     }
 
     public void FixedUpdate()
@@ -38,5 +58,19 @@ public class Enemy : MonoBehaviour
     public virtual void Move()
     {
         rb.velocity = new Vector2(currentSpeed*faceDir.x,rb.velocity.y);  
+    }
+
+    public void timeCounter()
+    {
+        if (wait)
+        {
+            waitTimeCounter -= Time.deltaTime;
+            if (waitTimeCounter <= 0)
+            {
+                wait = false;
+                waitTimeCounter = waitTime;
+                transform.localScale = new Vector3(faceDir.x,1,1);
+            }
+        }
     }
 }
