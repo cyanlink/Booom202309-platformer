@@ -44,10 +44,10 @@ public class Enemy : MonoBehaviour
         if ((physicsCheck.touchLeftWall&&faceDir.x<0) || (physicsCheck.touchRightWall&&faceDir.x>0))
         {
             wait = true;
-            anim.SetBool("walk", false);
-        }
+            //anim.SetBool("walk", false);
 
-        timeCounter();
+        }
+        TimeCounter();
     }
 
     public void FixedUpdate()
@@ -59,8 +59,8 @@ public class Enemy : MonoBehaviour
     {
         rb.velocity = new Vector2(currentSpeed*faceDir.x,rb.velocity.y);  
     }
-
-    public void timeCounter()
+    //¼ÆÊ±Æ÷
+    public void TimeCounter()
     {
         if (wait)
         {

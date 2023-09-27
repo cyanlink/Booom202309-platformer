@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 仅为展示，可以参考
+/// </summary>
 public class PlayerControlTryBy_MrWorld : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -19,19 +23,24 @@ public class PlayerControlTryBy_MrWorld : MonoBehaviour
     public float fallAddition = 3.0f;//下落重力加成
     public float jumpAddition = 1.5f;//跳跃重力加成
 
+    public int jumpCount;//当前跳跃次数
+
+    public int jumpMax=2;
+
     private float moveX;
 
     private bool facingRight = true;//面向右侧
 
     private bool moveJump;//跳跃输入
 
-    private bool jumpHold;//长按跳跃保持
-    
+    private bool jumpHold;//长按跳跃
 
+    private bool isJump;//其传递作用，表示跳跃
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();//刚体组件调用
+        jumpCount = jumpMax;
     }
 
     // Update is called once per frame
@@ -41,9 +50,9 @@ public class PlayerControlTryBy_MrWorld : MonoBehaviour
         moveJump = Input.GetButtonDown("Jump");//空格跳跃
         jumpHold = Input.GetButton("Jump");//跳跃保持
 
-        if(moveJump && isGround)
+        if(moveJump && jumpCount >0)
         {
-            rb.velocity = Vector2.up * jumpSpeed;
+            isJump = true;
         }
     }
 
@@ -77,13 +86,28 @@ public class PlayerControlTryBy_MrWorld : MonoBehaviour
 
     private void Jump()//跳跃重力修正
     {
+        if (isGround)
+        {
+            jumpCount = jumpMax;
+        }
+        if (isJump)
+        { 
+            rb.AddForce(Vector2.up * jumpSpeed,ForceMode2D.Impulse);
+            jumpCount--;
+            isJump = false;
+        }
+
         if (rb.velocity.y<0)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y*(fallAddition - 1)*Time.fixedDeltaTime;
+            rb.gravityScale = fallAddition;
         }
         else if(rb.velocity.y>0&&jumpHold)
         {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpAddition - 1) * Time.fixedDeltaTime;
+            rb.gravityScale = jumpAddition;
+        }
+        else
+        {
+            rb.gravityScale = 1f;
         }
     }
 }
