@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Character : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class Character : MonoBehaviour
     public float invulnerableDuration;
     private float invulnerableCounter;
     public bool invulnerable;
+
+
+    public UnityEvent<Transform> OnTakeDamage; //受伤事件
+    public UnityEvent OnDie;//死亡事件
 
     private void Start()
     {
@@ -41,11 +46,17 @@ public class Character : MonoBehaviour
         {
             currentHealth -= attacker.damage;
             TriggerInvulnerable();
+
+
+            //执行受伤
+            OnTakeDamage?.Invoke(attacker.transform);
+
         }
         else
         {
             currentHealth = 0;
             //触发死亡,播放死亡动画
+            OnDie?.Invoke();
         }
 
     }

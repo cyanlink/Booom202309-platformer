@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;//场景
-
+/// <summary>
+/// 通关场景切换相关
+/// </summary>
 public class Finish : MonoBehaviour
 {
     private AudioSource finishSound;
@@ -27,9 +29,4 @@ public class Finish : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    private void victoryChangeScene()
-    {
-        SceneManager.LoadScene(3);
-        Time.timeScale = 1.0f;
-    }
 }

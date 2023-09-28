@@ -1346,8 +1346,8 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 64
-  fallAddition: 3
-  jumpAddition: 1.5
+  fallAddition: 2.5
+  jumpAddition: 0.65
   jumpCount: 0
   jumpMax: 2
 --- !u!114 &552516329
