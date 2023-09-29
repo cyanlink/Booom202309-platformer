@@ -168,7 +168,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -219,11 +219,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 362
-        width: 256
-        height: 256
+        y: 180
+        width: 265.2
+        height: 138
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,12 +239,12 @@ TextureImporter:
       name: "\u5730\u523A_1"
       rect:
         serializedVersion: 2
-        x: 512
-        y: 362
-        width: 256
-        height: 256
+        x: 265
+        y: 180
+        width: 265.2
+        height: 138
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -260,12 +260,12 @@ TextureImporter:
       name: "\u5730\u523A_2"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 106
-        width: 256
-        height: 256
+        x: 530
+        y: 180
+        width: 265.2
+        height: 138
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -281,12 +281,12 @@ TextureImporter:
       name: "\u5730\u523A_3"
       rect:
         serializedVersion: 2
-        x: 256
-        y: 106
-        width: 256
-        height: 256
+        x: 795
+        y: 180
+        width: 265.2
+        height: 138
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -302,12 +302,12 @@ TextureImporter:
       name: "\u5730\u523A_4"
       rect:
         serializedVersion: 2
-        x: 512
-        y: 106
-        width: 256
-        height: 256
+        x: 1060
+        y: 180
+        width: 265.2
+        height: 138
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -315,48 +315,6 @@ TextureImporter:
       bones: []
       spriteID: 75a2f5bb692a517d0800000000000000
       internalID: -697120380407070172
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u5730\u523A_5"
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 106
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d489c015c7e3335a0800000000000000
-      internalID: 2191722871625377713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u5730\u523A_6"
-      rect:
-        serializedVersion: 2
-        x: 1024
-        y: 106
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c185f55e37880d530800000000000000
-      internalID: -5206628963696348871
       vertices: []
       indices: 
       edges: []
@@ -377,8 +335,6 @@ TextureImporter:
       "\u5730\u523A_2": -1651379403459367639
       "\u5730\u523A_3": 5645765294353870324
       "\u5730\u523A_4": -697120380407070172
-      "\u5730\u523A_5": 2191722871625377713
-      "\u5730\u523A_6": -5206628963696348871
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
