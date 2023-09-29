@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Enemy_B_Control : Enemy
 {
-
-    public override void Move()
+    protected override void Awake()
     {
-        base.Move(); 
-        anim.SetBool("walk",true);
+        base.Awake();
+        patrolState = new Enemy_BPatrolState();
+        chaseState = new Enemy_BChaseState();
+
     }
 }
