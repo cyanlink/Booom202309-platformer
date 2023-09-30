@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,31 +10,31 @@ public class Enemy : MonoBehaviour
 
     [HideInInspector] public Animator anim;
 
-    [Header("»ù±¾²ÎÊı")]
+    [Header("åŸºæœ¬å‚æ•°")]
 
-    public float normalSpeed;//³£¹æËÙ¶È
+    public float normalSpeed;//å¸¸è§„é€Ÿåº¦
 
-    public float chaseSpeed;//×·»÷ËÙ¶È
+    public float chaseSpeed;//è¿½å‡»é€Ÿåº¦
 
-    [HideInInspector] public float currentSpeed;//µ±Ç°ËÙ¶È
+    [HideInInspector] public float currentSpeed;//å½“å‰é€Ÿåº¦
 
-    public Vector3 faceDir;//Ãæ³¯·½Ïò
+    public Vector3 faceDir;//é¢æœæ–¹å‘
 
-    public float hurtForce;//ÊÜµ½¹¥»÷³¯Ïò
+    public float hurtForce;//å—åˆ°æ”»å‡»æœå‘
 
 
     public Transform attacker;
 
-    [Header("¼ì²â")]
+    [Header("æ£€æµ‹")]
     public Vector2 centerOffset;
 
-    public Vector2 checkSize;//¼ì²â³ß´ç
+    public Vector2 checkSize;//æ£€æµ‹å°ºå¯¸
 
-    public float checkDistance;//¼ì²â¾àÀë
+    public float checkDistance;//æ£€æµ‹è·ç¦»
 
     public LayerMask attackLayer;
 
-    [Header("¼ÆÊ±Æ÷")]
+    [Header("è®¡æ—¶å™¨")]
     public float waitTime;
 
     public float waitTimeCounter;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
     public float lostTimeCounter;
 
 
-    [Header("×´Ì¬")]
+    [Header("çŠ¶æ€")]
     public bool isHurt;
 
     public bool isDead;
@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// ¼ÆÊ±Æ÷
+    /// è®¡æ—¶å™¨
     /// </summary>
     public void TimeCounter()
     {
@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour
             waitTimeCounter -= Time.deltaTime;
             if (waitTimeCounter <= 0)
             {
-                Debug.Log("Ö´ĞĞ");
+                Debug.Log("æ‰§è¡Œ");
                 wait = false;
                 waitTimeCounter = waitTime;
                 transform.localScale = new Vector3(faceDir.x,1,1);
@@ -141,16 +141,16 @@ public class Enemy : MonoBehaviour
             _ => null
         };
 
-        currentState.OnExit();//½áÊøÉÏÒ»×´Ì¬
-        currentState = newState;//ÇĞ»»ĞÂµÄ×´Ì¬
-        currentState.OnEnter(this);//Ö´ĞĞĞÂµÄ×´Ì¬
+        currentState.OnExit();//ç»“æŸä¸Šä¸€çŠ¶æ€
+        currentState = newState;//åˆ‡æ¢æ–°çš„çŠ¶æ€
+        currentState.OnEnter(this);//æ‰§è¡Œæ–°çš„çŠ¶æ€
     }
 
-    #region ÊÂ¼şÖ´ĞĞ·½·¨
+    #region äº‹ä»¶æ‰§è¡Œæ–¹æ³•
     public void OnTakeDamage(Transform attackTrans)
     {
         attacker = attackTrans;
-        //×ªÉí
+        //è½¬èº«
         if (attackTrans.position.x - transform.position.x > 0)
         {
             transform.localScale = new Vector3(-1,1,1);
@@ -159,7 +159,7 @@ public class Enemy : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        //ÊÜÉË±»»÷ÍË
+        //å—ä¼¤è¢«å‡»é€€
         isHurt = true;
         anim.SetTrigger("hurt");
         Vector2 dir = new Vector2(transform.position.x - attackTrans.position.x, 0).normalized;
