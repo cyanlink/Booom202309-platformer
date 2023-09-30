@@ -774,7 +774,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 18.485107
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -8513,13 +8513,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb4d39383f21254a815718522e0c03f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  physicsCheck: {fileID: 0}
+  anim: {fileID: 0}
   normalSpeed: 5
   chaseSpeed: 0
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
+  hurtForce: 0
+  attacker: {fileID: 0}
+  centerOffset: {x: 0, y: 0}
+  checkSize: {x: 0, y: 0}
+  checkDistance: 0
+  attackLayer:
+    serializedVersion: 2
+    m_Bits: 0
   waitTime: 0
   waitTimeCounter: 0
   wait: 0
+  lostTime: 0
+  lostTimeCounter: 0
+  isHurt: 0
+  isDead: 0
 --- !u!114 &1310504874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8551,6 +8565,12 @@ MonoBehaviour:
   currentHealth: 0
   invulnerableDuration: 0
   invulnerable: 0
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!70 &1310504876
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -14924,7 +14944,7 @@ MonoBehaviour:
   m_Follow: {fileID: 552516327}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 18.485107
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
