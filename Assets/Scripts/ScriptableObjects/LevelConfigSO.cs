@@ -11,7 +11,5 @@ public class LevelConfigSO : ScriptableObject
     public GameSceneSO MenuScene;
 
     //下标从0开始
-    public int CurrentLevel { get; set; }
-    //下标从0开始
     public int MaxLevel { get =>  Levels.Count - 1; }
 }

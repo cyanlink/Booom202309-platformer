@@ -12,17 +12,28 @@ public class SceneLoader : MonoBehaviour, ISetSpawnPosition
     [Header("“¿¿µ")]
     public Transform playerTransform;
     public LevelConfigSO levelConfig;
-    [Header("≥°æ∞≈‰÷√")]
-    public GameSceneSO firstLoadScene;
-    public GameSceneSO menuScene;
+    [Header("≈‰÷√")]
+    public GameSceneSO sceneToLoad;
 
-    [SerializeField] private GameSceneSO currentLoadedScene;
+    public SceneLoaderSO sceneLoaderSO;
 
-    private GameSceneSO sceneToLoad;
+    private GameSceneSO currentLoadedScene;
+
     private Vector3 positionToGo;
     public Vector3 PositionToGo;
     private bool isLoading;
     private bool fadeScreen;
+
+    private int currentLevel = 0 ;
+
+    private void Awake()
+    {
+        sceneLoaderSO.loader = this;
+    }
+    private void Start()
+    {
+        _ = SwitchScene(sceneToLoad, playerTransform.position, false);
+    }
 
     public void SetSpawnPosition(Vector3 spawnpos)
     {
@@ -31,14 +42,17 @@ public class SceneLoader : MonoBehaviour, ISetSpawnPosition
 
     public async UniTask TeleportToSafeHouse()
     {
-        await SwitchScene(levelConfig.SafeHouseScene, new Vector3(0,0,0), true);
+        await SwitchScene(levelConfig.SafeHouseScene, new Vector3(0, 0, 0), true);
     }
 
-    public async UniTask SafeHouseToLevel()
+    public async UniTask SafeHouseToNextLevel()
     {
-        int index = ++levelConfig.CurrentLevel;
-        await SwitchScene(levelConfig.Levels[index], positionToGo, true);
-        //TODO: ÷’æ÷¬ﬂº≠‘ı√¥–¥
+        if (!isLoading) {
+            await SwitchScene(levelConfig.Levels[currentLevel], positionToGo, true);
+            currentLevel++;
+
+            //TODO: ÷’æ÷¬ﬂº≠‘ı√¥–¥
+        }
     }
 
     public async UniTask BackToMenu()
