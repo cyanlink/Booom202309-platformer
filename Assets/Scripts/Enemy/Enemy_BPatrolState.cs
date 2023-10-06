@@ -24,7 +24,6 @@ public class Enemy_BPatrolState : BaseState
         if (!currentEnemy.physicsCheck.isGround||(currentEnemy.physicsCheck.touchLeftWall && currentEnemy.faceDir.x < 0) || (currentEnemy.physicsCheck.touchRightWall && currentEnemy.faceDir.x > 0))
         {
             currentEnemy.wait = true;
-            //未绑定动画，下行代码不执行,流程卡住
             currentEnemy.anim.SetBool("walk", false);
 
         }
