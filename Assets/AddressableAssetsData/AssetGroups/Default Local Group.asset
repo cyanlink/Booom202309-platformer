@@ -47,6 +47,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de0f023f911c18540a34369b5f59e6f5
+    m_Address: Assets/Scriptable Objects/Levels
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a8e7ef6c496240c4889022f8da3afc87
+    m_Address: Assets/Scriptable Objects/New Level Config SO.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0afe19c0b52ead541a087b601c99aba9
+    m_Address: Assets/Scenes/Menu Scene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 00c30a7c07d68aa47847e26d5b4efa94
+    m_Address: Assets/Scenes/SafeHouseTest.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ccceb0d33d914a640ba8c107e54ab76d, type: 2}
   m_SchemaSet:

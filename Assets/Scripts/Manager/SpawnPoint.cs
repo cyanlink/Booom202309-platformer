@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    public ISetSpawnPosition manager;
+    public ISetSpawnPosition sceneloader;
     private void Awake()
     {
-        manager.SetSpawnPosition(this.transform.position);
+        sceneloader.SetSpawnPosition(this.transform.position);
     }
 }

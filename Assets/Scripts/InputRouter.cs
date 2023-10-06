@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using TFR;
+using BOOOM;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static TFR.InputAsset;
+using static BOOOM.InputAsset;
 
 public class InputRouter : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class InputRouter : MonoBehaviour
 
     void Awake()
     {
-        inputMaps = new TFR.InputAsset();
+        inputMaps = new BOOOM.InputAsset();
 
         movementMap = inputMaps.Movement;
         uiMap = inputMaps.UI;

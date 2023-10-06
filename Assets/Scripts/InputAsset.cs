@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace TFR
+namespace BOOOM
 {
     public partial class @InputAsset: IInputActionCollection2, IDisposable
     {
