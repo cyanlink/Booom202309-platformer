@@ -11,6 +11,7 @@ public class SceneLoader : MonoBehaviour, ISetSpawnPosition
 {
     [Header("“¿¿µ")]
     public Transform playerTransform;
+    public LevelConfigSO levelConfig;
     [Header("≥°æ∞≈‰÷√")]
     public GameSceneSO firstLoadScene;
     public GameSceneSO menuScene;
@@ -28,13 +29,25 @@ public class SceneLoader : MonoBehaviour, ISetSpawnPosition
         this.PositionToGo = spawnpos;
     }
 
-    public async UniTaskVoid TeleportToSafeHouse()
+    public async UniTask TeleportToSafeHouse()
     {
-        await currentLoadedScene.sceneReference.UnLoadScene();
+        await SwitchScene(levelConfig.SafeHouseScene, new Vector3(0,0,0), true);
+    }
+
+    public async UniTask SafeHouseToLevel()
+    {
+        int index = ++levelConfig.CurrentLevel;
+        await SwitchScene(levelConfig.Levels[index], positionToGo, true);
+        //TODO: ÷’æ÷¬ﬂº≠‘ı√¥–¥
+    }
+
+    public async UniTask BackToMenu()
+    {
+        await SwitchScene(levelConfig.MenuScene, positionToGo, true);
     }
 
 
-    public async UniTaskVoid SwitchScene(GameSceneSO targetScene, Vector3 posToGo, bool fadeScreen)
+    public async UniTask SwitchScene(GameSceneSO targetScene, Vector3 posToGo, bool fadeScreen)
     {
         if (isLoading)
             return;

@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328e952504b27614ca875a89ca3edefb, type: 3}
   m_Name: LevelConfig
   m_EditorClassIdentifier: 
-  Levels: []
-  currentLevel: 0
+  Levels:
+  - {fileID: 11400000, guid: b64f95cdacf2bb2488dbe2455ff1eb03, type: 2}
+  - {fileID: 11400000, guid: ac79f339cb6992143821ae2aaf380caf, type: 2}
+  - {fileID: 11400000, guid: 8bdf49a7266345844affab269ab5166d, type: 2}
+  - {fileID: 11400000, guid: c0db99d6380fbbd478b81d8d078557b9, type: 2}
+  - {fileID: 11400000, guid: 03df9117dd0349b43a7114ae09c5960e, type: 2}
+  SafeHouseScene: {fileID: 11400000, guid: 3fcab6833528cbe48bc591ba7a7afa58, type: 2}
+  MenuScene: {fileID: 11400000, guid: 7b00104d10718f440b62dec6e234a9d0, type: 2}

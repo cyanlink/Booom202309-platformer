@@ -7,23 +7,14 @@ using static BOOOM.InputAsset;
 
 public class InputRouter : MonoBehaviour
 {
-    private InputAsset inputMaps;
-
-    private MovementActions movementMap;
-    private UIActions uiMap;
-
-    public MovementActions Movement => movementMap;
-    public UIActions UI => uiMap;
-
-    void Awake()
+    private InputAsset m_Controls;
+    public InputAsset InputControls
     {
-        inputMaps = new BOOOM.InputAsset();
-
-        movementMap = inputMaps.Movement;
-        uiMap = inputMaps.UI;
-
-        movementMap.Enable();
-        uiMap.Disable();
+        get
+        {
+            if (m_Controls == null)
+                m_Controls = new InputAsset();
+            return m_Controls;
+        }
     }
-
 }
