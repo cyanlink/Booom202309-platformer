@@ -102,17 +102,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.27789688, y: -1.2716432}
+  m_Offset: {x: 0.28614426, y: -0.89601326}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.005, y: 3.135}
+    oldSize: {x: 2.67, y: 2.09}
     newSize: {x: 2.67, y: 2.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.3657608, y: 0.5264044}
+  m_Size: {x: 1.3196487, y: 0.27598476}
   m_EdgeRadius: 0
 --- !u!70 &2073246075692505622
 CapsuleCollider2D:
@@ -148,9 +148,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.25381088, y: 0.023540616}
-  m_Size: {x: 2.4515915, y: 3.2808726}
-  m_Direction: 0
+  m_Offset: {x: 0.06792141, y: -0.02271558}
+  m_Size: {x: 2.6135836, y: 2.029761}
+  m_Direction: 1
 --- !u!114 &913692752012835913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,8 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physicsCheck: {fileID: 0}
   anim: {fileID: 0}
-  normalSpeed: 5
-  chaseSpeed: 8
+  normalSpeed: 2
+  chaseSpeed: 4
   currentSpeed: 0
   faceDir: {x: 0, y: 0, z: 0}
   hurtForce: 0
@@ -258,9 +258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manual: 1
-  bottomOffset: {x: -1.39, y: -1.55}
-  leftOffset: {x: -1.37, y: 0}
-  rightOffset: {x: 1.39, y: 0}
+  bottomOffset: {x: -1.36, y: -1.01}
+  leftOffset: {x: -1.22, y: 0}
+  rightOffset: {x: 1.35, y: 0}
   checkRaduis: 0.1
   groundLayer:
     serializedVersion: 2

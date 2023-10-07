@@ -42,6 +42,10 @@ public class PhysicsCheck : MonoBehaviour
     private void Update()
     {
         Check();
+        if (!isGround)
+        {
+            bottomOffset.x *= -1;
+        }
     }
 
     public void Check()
@@ -56,6 +60,7 @@ public class PhysicsCheck : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        
         Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, checkRaduis);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, checkRaduis);
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, checkRaduis);
